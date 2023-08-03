@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cal-body {
+    height: auto;
+    width: 460px;
+    background-color: rgb(25, 25, 84);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 32px;
+    border-radius: 15px;
+}
+
+.display {
+   position: relative;
+   height: 160px;
+   width: auto;
+   background-color: rgb(198, 198, 198);
+   
+}
+
+.digits {
+    font-size: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+button {
+    font-size: x-large;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(241, 241, 226);
+}
+
+.row {
+    display: flex;
+    margin-top: 20px;
+    gap:20px;
+}
+
+.clear {
+    width: 220px;
+    background-color: rgb(255, 124, 124);
+}
+
+.delete {
+    background-color: rgb(97, 97, 255);
+}
+
+.zero{
+    width: 220px;
+}
+.oper {
+    font-size: 50px;
+    background-color: orange;
+}
+
+.number {
+    font-size: xx-large;
+}
+
+.deci {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+

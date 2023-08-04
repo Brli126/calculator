@@ -1,6 +1,11 @@
+
+
+
 let accum = 0;
 let current = 0;
 let oper =  '';
+let decimal = false;
+let deciDisplay = '0';
 
 
 function add(a, b) {
@@ -41,20 +46,37 @@ function displayNum(num) {
 }
 
 
+//  Test if a string of number, strNum, contains the decimal point.
+function isDeci(strNum) {
+    return strNum.includes('.');
+}
+
+//  Event listener for the number buttons.
 nums.forEach(num => num.addEventListener('click', () => {
-    current = current * 10 + Number(num.textContent);
+
+    if (!isDeci(deciDisplay)) {  
+        current = current * 10 + Number(num.textContent);
+        deciDisplay = current.toString();
+    } else {
+        deciDisplay += num.textContent;
+        current = Number(deciDisplay);
+        
+    }
+
     displayNum(current);
+  
 }));
 
+
+//  Event listener for operator buttons;
 
 const ops = document.querySelectorAll('.oper');
 ops.forEach(op => op.addEventListener('click', () => {
     
     const classL = op.classList;
-    console.log(classL);
     
     if (!classL.contains('eqto')) {
-        // When an operator is hit, move the current number to accumulated number
+        //  When an operator is hit, move the current number to accumulated number
         accum = operate(accum, current, oper);
         displayNum(accum);
 
@@ -67,8 +89,10 @@ ops.forEach(op => op.addEventListener('click', () => {
         } else {
             oper = '-';
         }
-
+        
+        //  Syncing the current number and deciDisplay
         current = 0;
+        deciDisplay = '0';
 
     } else {
         accum = operate(accum, current, oper);
@@ -80,4 +104,34 @@ ops.forEach(op => op.addEventListener('click', () => {
 }));
 
 
+//  "Clear" button
+const clearB = document.querySelector('.clear');
+clearB.addEventListener('click', () => {
+    accum = 0;
+    current = 0;
+    oper = '';
+    digit.textContent = 0;
+    deciDisplay = '0';
+
+});
+
+// "Back" button
+const backB = document.querySelector('.back');
+backB.addEventListener('click', () => {
+    current = 0;
+    displayNum(current);
+});
+
+
+
+//  ".", the decimal button
+const deciB = document.querySelector('.deci');
+deciB.addEventListener('click', () => {
+    if (isDeci(deciDisplay)) return;
+    else {
+        deciDisplay += '.';
+        digit.textContent = deciDisplay;
+    }
+   
+});
 

@@ -1,5 +1,5 @@
-let accum = '';
-let current = '';
+let accum = 0;
+let current = 0;
 let oper =  '';
 
 
@@ -42,7 +42,7 @@ function displayNum(num) {
 
 
 nums.forEach(num => num.addEventListener('click', () => {
-    current += num.textContent;
+    current = current * 10 + Number(num.textContent);
     displayNum(current);
 }));
 
@@ -54,14 +54,13 @@ ops.forEach(op => op.addEventListener('click', () => {
     console.log(classL);
     
     if (!classL.contains('eqto')) {
-        accum = operate(Number(accum), Number(current), oper);
+        // When an operator is hit, move the current number to accumulated number
+        accum = operate(accum, current, oper);
         displayNum(accum);
-        //console.log(`accum: ${accum}`);
-        //console.log(`current: ${current}`);
-        //console.log(`oper: ${oper}`);
+
         if (classL.contains('divide')) {
             oper = '/';
-        } else if (classL.contains('multiply')) {
+        } else if (classL.contains('multi')) {
             oper = '*';
         } else if (classL.contains('plus')) {
             oper = '+';
@@ -69,12 +68,12 @@ ops.forEach(op => op.addEventListener('click', () => {
             oper = '-';
         }
 
-        current = '';
+        current = 0;
 
     } else {
-        accum = operate(Number(accum), Number(current), oper);
+        accum = operate(accum, current, oper);
         displayNum(accum);
-        current = '';
+        current = 0;
         
     }
 

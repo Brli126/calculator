@@ -119,6 +119,7 @@ clearB.addEventListener('click', () => {
 const backB = document.querySelector('.back');
 backB.addEventListener('click', () => {
     current = 0;
+    deciDisplay = '0';
     displayNum(current);
 });
 
